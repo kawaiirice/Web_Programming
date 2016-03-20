@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Interactive Matching Activity</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/style.css">
+<!-- <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="js/script.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">		
+	<p>Message: <span id="msg">Match image on left with its identical on the right.</span> <p> 
+
+	<table class="table-condensed" id="tbl">
+	</table>
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-md center-block" data-toggle="modal" data-target="#myModal">Reset</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Generate Worksheet</h4>
+        </div>
+        <div class="modal-body">
+        	<span id="modmsg">Select worksheet size and click 'Generate Worksheet'.</span>
+          	<fieldset id="gen"> 
+						Enter <b>n</b>: <input type="number" min="2" max="12" value="4" id="n">
+						</fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" id="btn" data-dismiss="modal">Generate Worksheet</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Interactive Matching Activity</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta property="og:url"           content="http://cs3226.comp.nus.edu.sg/~e0014474/lab7/index.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Interactive Matching Activity" />
+  <meta property="og:description"   content="A cute matching game with penguins" />
+  <meta property="og:image"         content="http://cs3226.comp.nus.edu.sg/~e0014474/lab7/penguin/9.png" />
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/style.css">
+
+<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script async src="js/script.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- Facebook's Javascript SDK -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>  
+
+  <!-- Fixed top navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+       <div class="navbar-header">
+        <a class="navbar-brand" href="index.html">Penguin Pairing</a> 
+      </div> 
+      <button type="button" class="btn btn-default navbar-btn pull-right" onclick="login()">
+        <span id="inout"> </span> 
+      </button>
+    </div>
+  </nav>
+  
+ <!--  Actual contents -->
+  <div class="container">		
+  	<p class="text-center">Message: <span id="msg">Make as many penguins eat food and then maximize the total score.</span><br>
+      <span id="msg2"></span> <p> 
+
+    <!-- Table to be filled -->
+  	<table class="table-condensed" id="tbl">
+  	</table>
+
+    <!-- Put buttons in the same row -->
+    <div class="row">
+      <div class="col-xs-3"></div>
+      <div class="col-xs-3 text-left">
+          <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-sm center-block" data-toggle="modal" data-target="#myModal">Restart</button>
+      </div>
+      <div class="col-xs-3 text-right">  
+          <!-- Trigger the solution with a button -->
+        <button type="button" class="btn btn-info btn-sm center-block" data-toggle="modal" data-target="#myModal2" id="solve" onclick="solve()">Solve</button>
+      </div>
+      <div class="col-xs-3"></div>
+    </div>
+    
+    <div class="row pull-left .col-xs-8 .col-sm-6 .col-md-3 .col-lg-3">
+      <p>Enjoying the game? Tell your friends!</p>
+      <div>
+        <!-- My tweet code -->
+        <div class="pull-left">
+          <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="funpenguingame">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>  
+        <!-- My like button code -->
+        <div class="fb-like pull-right" 
+              data-href="http://cs3226.comp.nus.edu.sg/~e0014474/lab7/index.html" 
+              data-layout="button_count" 
+              data-action="like" 
+              data-show-faces="true" 
+              data-share="true">
+        </div>
+      </div>  
+    </div>  
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <form> 
+           <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Generate Worksheet</h4>
+            </div>
+            <div class="modal-body">
+            	<span id="modmsg">Select worksheet X and click 'Generate Worksheet'.</span>
+              	<fieldset id="gen"> 
+    						Enter <b>x</b>: <input name="x" type="number" min="1" max="9" value="1" id="x">
+    						</fieldset>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" onclick="onClick()">Generate Worksheet</button>
+            </div> 
+          </form>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Modal2 -->
+    <div class="modal fade" id="myModal2" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal2 content-->
+        <div class="modal-content">
+           <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Results</h4>
+            </div>
+            <div class="modal-body">
+              <span id="modmsg2"></span><br>
+              <span id="modmsg3"></span>
+            </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <!-- Copyrights -->
+        <div class="pull-right .col-xs-12 .col-sm-6 .col-md-4 .col-md-offset-8 .col-lg-3 .col-lg-offset-9"><span class="glyphicon glyphicon-copyright-mark"></span> 2016 Penguin Paradise</div>
+      </div>
+  </footer>
+</body>
+</html>

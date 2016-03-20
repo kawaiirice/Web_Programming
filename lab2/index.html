@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Interactive Matching Activity</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<fieldset id="gen"> <!-- yup, we have not discussed fieldset, legend, input, and button in the lecture, so GIYF -->
+<legend>Generate Worksheet</legend>
+Enter <b>n</b>: <input type="number" min="2" max="12" value="4" id="n"> <button id="btn">Generate Worksheet</button> 
+<a HREF = "../index.html"><button id="homeBtn">Return to homepage.</button></a>
+</fieldset>
+
+<p>Message: <span id="msg">Select worksheet size and click 'Generate Worksheet'.</span> <br> 
+	<span id="countdown"></span> <br> 
+	<span id="score"></span> <br>
+	<span id="correct"></span> <br>
+	<span id="incorrect"></span> </p>
+
+<table id="tbl">
+</table>
+
+
+<script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

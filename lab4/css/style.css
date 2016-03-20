@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:200);/*Ralway font*/
+
+body{ font-family: 'Raleway', sans-serif; background-color: rgba(7, 173, 255, 0.18);}
+table{ display: flex; justify-content: center; position: relative; table-layout: fixed}
+
+td { font-size: 200%; text-align: center;}
+td img.big{ max-width:78px; max-height:84.6px;}
+td img.small{ max-width:60%; max-height:auto;}
+td.right img{ float: left;}
+td.left img{ float: right;}
+td.left { padding-right: 0; -webkit-filter: brightness(100%); transform: translate(0,0); transition: 1s;}
+td.right { padding-left: 0; -webkit-filter: brightness(100%); transform: translate(0,0); transition: 1s;}
+td.left:hover{ transform: translate(10%,0); transition: 1s;}
+td.right:hover{ transform: translate(-10%,0); transition: 1s;}
+td.left.selected{transform: translate(15%,0);}
+td.right.selected{transform: translate(-15%,0);}
+td.selected {-webkit-filter: brightness(50%);}
+td.matched{-webkit-filter: brightness(0); transform: translate(0px,0px) !important; transition: 1s;} 
+
